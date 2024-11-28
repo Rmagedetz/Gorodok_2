@@ -1,0 +1,6 @@
+streamlit~=1.40.1
+pymysql
+pandas~=2.2.3
+SQLAlchemy~=2.0.36
+docxtpl
+gspread
