@@ -549,6 +549,34 @@ class Child(Base):
             session.add_all(new_children)
 
 
+class Persons(Base):
+    __tablename__ = "persons"
+    id = Column(Integer, primary_key=True)
+    child_name = Column(String(50), nullable=False)
+    parent_phone_num = Column(String(300))
+    parent_email = Column(String(300))
+    child_birthday = Column(Date, nullable=True, default=None)
+    parent_main = Column(String(300))
+    parent_passport = Column(String(300))
+    parent_adress = Column(String(300))
+    child_adress = Column(String(300))
+
+    @classmethod
+    def get_persons(cls):
+        with session_scope() as session:
+            roles = session.query(cls).all()
+
+            roles_list = [
+                {key: value for key, value in role.__dict__.items() if key != '_sa_instance_state'}
+                for role in roles
+            ]
+
+            roles_df = pd.DataFrame(roles_list)
+
+            roles_df.index += 1
+            return roles_df
+
+
 class GroupChild(Base):
     __tablename__ = 'group_children'
 

@@ -5,8 +5,9 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 st.set_page_config(
-    page_title="Городок",  # Заголовок страницы
-    layout="wide"  # Широкий режим
+    page_title="Записи и группы Городок",
+    layout="wide",
+    page_icon="logo.png"
 )
 
 
@@ -40,20 +41,26 @@ def logout():
 login_page = st.Page(login, title="Log in", icon=":material/login:")
 logout_page = st.Page(logout, title="Выйти", icon=":material/logout:")
 
-main_page = st.Page("pages/main_page.py", title="Главная", icon=":material/home:", default=True)
-records_page = st.Page("pages/records.py", title="Записи")
-children = st.Page("pages/children.py", title="Жители Городка")
-group_cards = st.Page("pages/group_card.py", title="Карточки групп")
-payments = st.Page("pages/payments.py", title="Платежи")
-bills = st.Page("pages/bills.py", title="Списания")
+main_page = st.Page("pages/main_page.py", title="Пользователи и роли", icon=":material/manage_accounts:")
+records_page = st.Page("pages/records.py", title="Записи", icon=":material/table_view:", default=True)
+children = st.Page("pages/children.py", title="Жители Городка", icon=":material/diversity_3:")
+group_cards = st.Page("pages/group_card.py", title="Карточки групп", icon=":material/folder_shared:")
+payments = st.Page("pages/payments.py", title="Платежи", icon=":material/payments:")
+bills = st.Page("pages/bills.py", title="Списания", icon=":material/receipt_long:")
+old_base = st.Page("pages/old_base.py", title="Выгрузка", icon=":material/table_eye:")
 
 if st.session_state.logged_in:
     pg = st.navigation(
         {
-            "Логин": [logout_page],
-            "Страницы": [main_page, records_page, children, group_cards, payments, bills]
+            "Администрирование": [logout_page, main_page],
+            "Дети и группы": [records_page, children, group_cards],
+            "Платежи и списания": [payments, bills],
+            "База Мой класс": [old_base]
         }
     )
+    big_logo = "logo_2.png"
+    small_logo = "logo.png"
+    st.logo(big_logo, size="large",icon_image=small_logo)
 else:
     pg = st.navigation([login_page])
 
