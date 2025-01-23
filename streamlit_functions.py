@@ -406,7 +406,7 @@ def delete_group(season_selector, filial, group):
         try:
             sql.Group.delete_group_from_filial_in_season(season_selector, filial, group)
         except:
-            st.error("Нельзя удалить филиал, в котором есть группы")
+            st.error("Нельзя удалить группу, в которой есть дети")
         st.rerun()
 
 
@@ -439,7 +439,7 @@ def add_child_to_group(season_selector, filial, group):
     if addition_type == "Жители городка":
         child_selector = st.selectbox("Ребенок", child_list, index=None)
         if child_selector:
-            if st.button("Добавтиь", key="add"):
+            if st.button("Добавить", key="add"):
                 sql.Group.add_child_to_group(season_selector, filial, group, child_selector)
                 st.rerun()
     else:
