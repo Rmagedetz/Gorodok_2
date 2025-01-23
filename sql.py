@@ -478,7 +478,7 @@ class Child(Base):
     school = Column(String(100), nullable=True, default="")
     additional_info = Column(Text, nullable=True, default="")
     departures = Column(String(10), nullable=True, default="")
-    referer = Column(String(100), nullable=True, default="")
+    referer = Column(String(300), nullable=True, default="")
     ok = Column(String(10), nullable=True, default="")
     mailing = Column(Text, nullable=True, default="")
     personal_accept = Column(String(10), nullable=True, default="")

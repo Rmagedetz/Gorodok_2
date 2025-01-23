@@ -60,7 +60,7 @@ if st.session_state.logged_in:
     )
     big_logo = "logo_2.png"
     small_logo = "logo.png"
-    st.logo(big_logo, size="large",icon_image=small_logo)
+    st.logo(big_logo, size="large", icon_image=small_logo)
 else:
     pg = st.navigation([login_page])
 
